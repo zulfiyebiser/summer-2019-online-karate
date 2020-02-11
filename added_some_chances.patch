@@ -1,0 +1,70 @@
+Index: src/test/java/features/bookit.feature
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/features/bookit.feature	(revision 2eebf76ee2055c6a86378d80a83292b783a558fb)
++++ src/test/java/features/bookit.feature	(date 1581429942731)
+@@ -15,14 +15,15 @@
+     When method get
+     Then status 401
+ 
+-#/sign?email=teacherva5@gmail.com&password=maxpayne
+-
++#/sign?email=teacherva5@gmail.com&password=maxpayne -->end point for sign in
++ # * means --> it specfies any gerkin keyword
+   Scenario: Sign in
+     Given path 'sign'
+     * param email = 'teacherva5@gmail.com'
+     * param password = 'maxpayne'
+     When method get
+     Then status 200
++    # def means -->define some variable
+     * def token = response.accessToken
+     * print "Token: ", token
+ 
+Index: src/test/java/FeatureRunner.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/FeatureRunner.java	(revision 2eebf76ee2055c6a86378d80a83292b783a558fb)
++++ src/test/java/FeatureRunner.java	(date 1581395427506)
+@@ -5,11 +5,13 @@
+ 
+     @Karate.Test
+     Karate bookitRooms() {
++
+         return new Karate().tags("@scenario_outline_bookit").relativeTo(getClass());
+     }
+ 
+     @Karate.Test
+     Karate createNewStudent() {
++
+         return new Karate().tags("@add_new_student").relativeTo(getClass());
+     }
+ 
+@@ -20,7 +22,8 @@
+     }
+ 
+     @Karate.Test
+-    Karate metaWeatherTests() {
++    Karate metaWeatherTests()
++    {
+         return new Karate().tags("@meta_weather").relativeTo(getClass());
+     }
+ 
+@@ -31,11 +34,13 @@
+ 
+     @Karate.Test
+     Karate addSpartan() {
++
+         return new Karate().tags("@add_spartan_with_external_json").relativeTo(getClass());
+     }
+ 
+     @Karate.Test
+     Karate patchSpartan() {
++
+         return new Karate().tags("@patch_spartan").relativeTo(getClass());
+     }
+ 

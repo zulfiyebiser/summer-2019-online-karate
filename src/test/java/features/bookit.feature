@@ -15,14 +15,15 @@ Feature: bookit tests
     When method get
     Then status 401
 
-#/sign?email=teacherva5@gmail.com&password=maxpayne
-
+#/sign?email=teacherva5@gmail.com&password=maxpayne -->end point for sign in
+ # * means --> it specfies any gerkin keyword
   Scenario: Sign in
     Given path 'sign'
     * param email = 'teacherva5@gmail.com'
     * param password = 'maxpayne'
     When method get
     Then status 200
+    # def means -->define some variable
     * def token = response.accessToken
     * print "Token: ", token
 
